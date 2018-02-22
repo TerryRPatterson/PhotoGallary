@@ -55,3 +55,10 @@ img.active{
   border-color: rgb(150,0,0);
   border-style: outset;
 }
+.metadata{
+  background-color: white;
+  width: 150px;
+  text-align: center;
+  display: flex;
+  display: column;
+}

@@ -8,9 +8,12 @@ let lightBox = function lightBox(event){
         document.querySelector("img.active").classList.toggle("active");
     }
     else{
+
       lightBoxImg.setAttribute("src", this.getAttribute("src"));
       lightbox.classList.toggle("active");
-      this.classList.toggle("active")
+      metadata = document.querySelector(".metadata");
+      metadata.style.height = lightBoxImg.height +"px";
+      this.classList.toggle("active");
     }
 
 }

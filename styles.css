@@ -52,6 +52,6 @@ main {
     flex-wrap: wrap;
 }
 img.active{
-  border-color: green;
+  border-color: rgb(150,0,0);
   border-style: outset;
 }

@@ -1,12 +1,19 @@
 
 
-let lightBox = function lightBox(){
-    lightbox = document.querySelector(".lightbox");
-    lightBoxImg = document.querySelector(".lightbox  img");
-    lightBoxImg.setAttribute("src", this.getAttribute("src"));
-    lightbox.classList.toggle("active");
-}
+let lightBox = function lightBox(event){
+    let lightbox = document.querySelector(".lightbox");
+    let lightBoxImg = document.querySelector(".lightbox  img");
+    if (event.target === lightbox || event.target === lightBoxImg){
+        lightbox.classList.toggle("active");
+        document.querySelector("img.active").classList.toggle("active");
+    }
+    else{
+      lightBoxImg.setAttribute("src", this.getAttribute("src"));
+      lightbox.classList.toggle("active");
+      this.classList.toggle("active")
+    }
 
+}
 
 let Pictures = ["Pictures/IMG_01.jpg","Pictures/IMG_02.jpg",
 "Pictures/IMG_03.jpg","Pictures/IMG_04.jpg","Pictures/IMG_05.jpg",

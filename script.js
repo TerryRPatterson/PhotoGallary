@@ -8,8 +8,8 @@ let lightBox = function lightBox(){
 }
 
 
-let Pictures = ["/Pictures/IMG_01.jpg","/Pictures/IMG_02.jpg",
-"/Pictures/IMG_03.jpg","/Pictures/IMG_04.jpg","/Pictures/IMG_05.jpg",
+let Pictures = ["Pictures/IMG_01.jpg","Pictures/IMG_02.jpg",
+"Pictures/IMG_03.jpg","Pictures/IMG_04.jpg","Pictures/IMG_05.jpg",
 "Pictures/ANIM_01.gif"];
 
 Gallery = document.querySelector(".gallery");

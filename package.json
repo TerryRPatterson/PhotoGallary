@@ -1,0 +1,20 @@
+{
+  "name": "photogallery",
+  "version": "1.0.0",
+  "description": "A gallery of Inez",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TerryRPatterson/PhotoGallary.git"
+  },
+  "author": "",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "bugs": {
+    "url": "https://github.com/TerryRPatterson/PhotoGallary/issues"
+  },
+  "homepage": "https://github.com/TerryRPatterson/PhotoGallary#readme",
+  "dependencies": {}
+}

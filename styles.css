@@ -62,3 +62,7 @@ img.active{
   display: flex;
   flex-direction: column;
 }
+.galleryItem{
+    margin: 5px;
+    width: 20%;
+}

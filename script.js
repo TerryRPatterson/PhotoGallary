@@ -1,6 +1,4 @@
 
-window.onload=getExif;
-
 let lightBox = function lightBox(event){
     let lightbox = document.querySelector(".lightbox");
     let lightBoxImg = document.querySelector(".lightbox  img");

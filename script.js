@@ -1,14 +1,14 @@
 
+window.onload=getExif;
 
 let lightBox = function lightBox(event){
     let lightbox = document.querySelector(".lightbox");
     let lightBoxImg = document.querySelector(".lightbox  img");
-    if (event.target === lightbox || event.target === lightBoxImg){
+    if (event.target.classList.contains("lightbox")){
         lightbox.classList.toggle("active");
         document.querySelector("img.active").classList.toggle("active");
     }
     else{
-
       lightBoxImg.setAttribute("src", this.getAttribute("src"));
       lightbox.classList.toggle("active");
       metadata = document.querySelector(".metadata");

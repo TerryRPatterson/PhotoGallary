@@ -16,7 +16,5 @@
     "url": "https://github.com/TerryRPatterson/PhotoGallary/issues"
   },
   "homepage": "https://github.com/TerryRPatterson/PhotoGallary#readme",
-  "dependencies": {
-    "exif-js": "^2.3.0"
-  }
+  "dependencies": {}
 }

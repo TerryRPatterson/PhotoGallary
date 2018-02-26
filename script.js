@@ -1,6 +1,4 @@
 
-window.onload=getExif;
-
 let lightBox = function lightBox(event){
     let lightbox = document.querySelector(".lightbox");
     let lightBoxImg = document.querySelector(".lightbox  img");
@@ -31,10 +29,7 @@ for (let picture of Pictures){
     galleryItem = document.createElement("img");
     galleryItem.classList.add("galleryItem");
     galleryItem.setAttribute("src",Pictures[i]);
-    galleryItem.setAttribute("style","Margin:5px");
     galleryItem.addEventListener("click",lightBox);
-    galleryItem.setAttribute("width", "20%")
-    galleryItem.classList.add("thumbnail");
     Gallery.appendChild(galleryItem);
     i ++;
 }

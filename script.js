@@ -1,4 +1,4 @@
-
+/*global EXIF*/
 let lightBox = function lightBox(event){
     let lightbox = document.querySelector(".lightbox");
     let lightBoxImg = document.querySelector(".lightbox  img");
@@ -15,20 +15,20 @@ let lightBox = function lightBox(event){
         event.target.classList.toggle("active");
         // Getting MetaData
         metadataFrame.textContent = "";
-        PictureMetadata = Pictures[event.target.getAttribute("id")];
-        for (tag in PictureMetadata){
+        let PictureMetadata = Pictures[event.target.getAttribute("id")];
+        for (let tag in PictureMetadata){
             metadataFrame.textContent += tag + " " + PictureMetadata[tag];
-            metadataFrame.textContent +="\n"
+            metadataFrame.textContent +="\n";
         }
     }
 
-}
+};
 
 let getMetaData = function getMetaData(image,index){
     let metadata = {};
     EXIF.getData(image, function () {
         let tags = EXIF.getAllTags(this);
-        for (tag in tags){
+        for (let tag in tags){
             if (tag !== "thumbnail"){
                 metadata[tag] = tags[tag];
                 console.log(urls[index]);
@@ -42,23 +42,23 @@ let getMetaData = function getMetaData(image,index){
             galleryHolder.forEach(function(tag){
 
                 Gallery.appendChild(tag);
-            })
+            });
         }
         console.log(metadata);
     });
-}
+};
 let urls = ["Pictures/IMG_01.jpg","Pictures/IMG_02.jpg",
-"Pictures/IMG_03.jpg","Pictures/IMG_04.jpg","Pictures/IMG_05.jpg",
-"Pictures/ANIM_01.gif"];
+    "Pictures/IMG_03.jpg","Pictures/IMG_04.jpg","Pictures/IMG_05.jpg",
+    "Pictures/ANIM_01.gif"];
 
 let Gallery = document.querySelector(".gallery");
-let galleryHolder = []
+let galleryHolder = [];
 
 
 document.querySelector("body").addEventListener("click",lightBox);
 let Pictures = [];
 let metadataLoaded = 0;
-urls.forEach(async function(url, index) {
+urls.forEach(function(url, index) {
     let galleryItem = document.createElement("img");
     galleryItem.classList.add("galleryItem");
     galleryItem.setAttribute("src",url);
@@ -68,5 +68,5 @@ urls.forEach(async function(url, index) {
 
     galleryHolder.push(galleryItem);
 });
-console.log(Pictures.length)
+console.log(Pictures.length);
 console.log("Load complete.");

@@ -1,6 +1,6 @@
 (function() {
 
-    var debug = false;
+    var debug = true;
 
     var root = this;
 

@@ -40,7 +40,7 @@ main {
     height: 100vh;
     display: none;
 }
-.lightbox.active{
+.lightbox.active.container{
     display:flex;
     justify-content: center;
     align-items: center;
@@ -55,14 +55,25 @@ img.active{
   border-color: rgb(150,0,0);
   border-style: outset;
 }
-.metadataFrame{
+.metadataAside{
   background-color: white;
   width: 150px;
   text-align: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+.metadataFrame{
+    flex-grow: 1;
 }
 .galleryItem{
     margin: 5px;
     width: 20%;
+}
+.lightboxCenteral{
+    height: fit-content;
+    display: flex;
+    width: fit-content;
 }

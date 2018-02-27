@@ -7,20 +7,16 @@ let lightBox = function lightBox(event){
         document.querySelector("img.active").classList.toggle("active");
     }
     else if(event.target.classList.contains("galleryItem")){
-        metadataFrame = document.querySelector(".metadataFrame");
+        let metadataFrame = document.querySelector(".metadataFrame");
 
         lightBoxImg.setAttribute("src", event.target.getAttribute("src"));
-        metadataFrame.style.height = lightBoxImg.height +"px";
         lightbox.classList.toggle("active");
 
         event.target.classList.toggle("active");
         // Getting MetaData
-        metadataFrame.textContent = "Avaible MetaData: \n";
+        metadataFrame.textContent = "";
         PictureMetadata = Pictures[event.target.getAttribute("id")];
         for (tag in PictureMetadata){
-            if (tag === "thumbnail"){
-                continue;
-            }
             metadataFrame.textContent += tag + " " + PictureMetadata[tag];
             metadataFrame.textContent +="\n"
         }
@@ -28,29 +24,49 @@ let lightBox = function lightBox(event){
 
 }
 
+let getMetaData = function getMetaData(image,index){
+    let metadata = {};
+    EXIF.getData(image, function () {
+        let tags = EXIF.getAllTags(this);
+        for (tag in tags){
+            if (tag !== "thumbnail"){
+                metadata[tag] = tags[tag];
+                console.log(urls[index]);
+                console.log(metadata[tag],tag);
+            }
+        }
+        Pictures[index] = metadata;
+        metadataLoaded ++;
+        console.log(metadataLoaded);
+        if (metadataLoaded === urls.length){
+            galleryHolder.forEach(function(tag){
+
+                Gallery.appendChild(tag);
+            })
+        }
+        console.log(metadata);
+    });
+}
 let urls = ["Pictures/IMG_01.jpg","Pictures/IMG_02.jpg",
 "Pictures/IMG_03.jpg","Pictures/IMG_04.jpg","Pictures/IMG_05.jpg",
 "Pictures/ANIM_01.gif"];
 
-Gallery = document.querySelector(".gallery");
+let Gallery = document.querySelector(".gallery");
+let galleryHolder = []
 
 
 document.querySelector("body").addEventListener("click",lightBox);
 let Pictures = [];
-for (let i = 0; i < urls.length; i++){
-    let metadata = {};
-    galleryItem = document.createElement("img");
+let metadataLoaded = 0;
+urls.forEach(async function(url, index) {
+    let galleryItem = document.createElement("img");
     galleryItem.classList.add("galleryItem");
-    galleryItem.setAttribute("src",urls[i]);
-    galleryItem.setAttribute("id", i);
+    galleryItem.setAttribute("src",url);
+    galleryItem.setAttribute("id", index);
     //retrive metadata
-    console.log(galleryItem);
-    EXIF.getData(galleryItem, function () {
-        let tags = EXIF.getAllTags(this);
-        for (tag in tags){
-            metadata[tag] = tags[tag];
-        }
-    });
-    Pictures[i] = metadata;
-    Gallery.appendChild(galleryItem);
-}
+    getMetaData(galleryItem,index);
+
+    galleryHolder.push(galleryItem);
+});
+console.log(Pictures.length)
+console.log("Load complete.");

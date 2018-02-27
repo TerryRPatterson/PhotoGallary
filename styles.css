@@ -2,7 +2,7 @@ html {
   height: 100%;
   width: 100%;
   overflow-x: hidden;
-  overflow-y: scroll;;
+  overflow-y: scroll;
 }
 
 body {
@@ -55,7 +55,7 @@ img.active{
   border-color: rgb(150,0,0);
   border-style: outset;
 }
-.metadata{
+.metadataFrame{
   background-color: white;
   width: 150px;
   text-align: center;

@@ -6,30 +6,51 @@ let lightBox = function lightBox(event){
         lightbox.classList.toggle("active");
         document.querySelector("img.active").classList.toggle("active");
     }
-    else{
-      lightBoxImg.setAttribute("src", this.getAttribute("src"));
-      lightbox.classList.toggle("active");
-      metadata = document.querySelector(".metadata");
-      metadata.style.height = lightBoxImg.height +"px";
-      this.classList.toggle("active");
+    else if(event.target.classList.contains("galleryItem")){
+        metadataFrame = document.querySelector(".metadataFrame");
+
+        lightBoxImg.setAttribute("src", event.target.getAttribute("src"));
+        metadataFrame.style.height = lightBoxImg.height +"px";
+        lightbox.classList.toggle("active");
+
+        event.target.classList.toggle("active");
+        // Getting MetaData
+        metadataFrame.textContent = "Avaible MetaData: \n";
+        PictureMetadata = Pictures[event.target.getAttribute("id")];
+        for (tag in PictureMetadata){
+            if (tag === "thumbnail"){
+                continue;
+            }
+            metadataFrame.textContent += tag + " " + PictureMetadata[tag];
+            metadataFrame.textContent +="\n"
+        }
     }
 
 }
 
-let Pictures = ["Pictures/IMG_01.jpg","Pictures/IMG_02.jpg",
+let urls = ["Pictures/IMG_01.jpg","Pictures/IMG_02.jpg",
 "Pictures/IMG_03.jpg","Pictures/IMG_04.jpg","Pictures/IMG_05.jpg",
 "Pictures/ANIM_01.gif"];
 
 Gallery = document.querySelector(".gallery");
 
-document.querySelector(".lightbox").addEventListener("click",lightBox);
 
-let i = 0;
-for (let picture of Pictures){
+document.querySelector("body").addEventListener("click",lightBox);
+let Pictures = [];
+for (let i = 0; i < urls.length; i++){
+    let metadata = {};
     galleryItem = document.createElement("img");
     galleryItem.classList.add("galleryItem");
-    galleryItem.setAttribute("src",Pictures[i]);
-    galleryItem.addEventListener("click",lightBox);
+    galleryItem.setAttribute("src",urls[i]);
+    galleryItem.setAttribute("id", i);
+    //retrive metadata
+    console.log(galleryItem);
+    EXIF.getData(galleryItem, function () {
+        let tags = EXIF.getAllTags(this);
+        for (tag in tags){
+            metadata[tag] = tags[tag];
+        }
+    });
+    Pictures[i] = metadata;
     Gallery.appendChild(galleryItem);
-    i ++;
 }

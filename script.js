@@ -72,4 +72,4 @@ urls.forEach(function(url, index) {
     imagesLoaded ++;
 });
 console.log(Pictures.length);
-$(".gallery").on("load",getMetaData);
+$("img").on("load",getMetaData);
